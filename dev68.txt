@@ -1,2 +1,53 @@
-nandini , hiiiii
-hello
+
+pipeline {
+agent any
+stages {
+stage("checkout"){
+steps {
+echo "sourcecode checkout completed"
+}
+}
+stage("info"){
+steps {
+echo "project:jenkins ci/cd demo"
+echo "pipeline exe started"
+}
+}
+stage("build"){
+steps {
+echo "build completed"
+}
+}
+stage("info"){
+steps {
+echo "test completed"
+}
+}
+stage("package"){
+steps {
+writeFile file:"dev68.txt",
+text: "Jenkins application"
+echo "application completed"
+}
+}
+stage("artifact generation"){
+steps {
+archiveArtifacts artifacts: "dev68.txt"
+echo "artifact completed"
+}
+}
+stage("deploy"){
+steps {
+echo "deploy completed"
+}
+}
+post{
+success{
+echo "pipeline compltd"
+}
+failure{
+echp "pipeline failed"
+}}}
+
+
+
